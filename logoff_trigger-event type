@@ -1,0 +1,7 @@
+create table logof_details (d_user varchar(20),event_type varchar(30),logof_date date,logof_time varchar(30));
+create or replace triggger logof_trig
+before logoff on schema
+begin
+    insert into logof_details values (user,ora_sysevent,sysdate,to_char(sysdate,'hh24:mi:ss'));
+    commit;
+end;
