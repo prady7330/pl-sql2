@@ -1,0 +1,20 @@
+insert into student values(3,'jainender');
+insert into student values(4,'vivek');
+insert into student values(5,'varun');
+insert into roll values(3,15);
+insert into roll values(4,16);
+insert into roll values(5,44);
+select* from student;
+select* from roll;
+declare 
+    v_name varchar2(30);
+    v_roll number(5);
+    cursor c_p (var_num varchar2) is select name,rol from student,roll where ser=seri and rol>var_num;
+begin
+    open c_p(0);
+    loop
+        fetch c_p into v_name,v_roll;
+        exit when c_p%notfound;
+        dbms_output.put_line(v_name||' has the roll no '||v_roll);
+    end loop;
+end ;
