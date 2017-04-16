@@ -1,0 +1,20 @@
+drop table student;
+create table student(ser number(2),name varchar2(30));
+insert into student values(1,'pradeep');
+insert into student values(2,'subhash');
+create table roll(seri number(2),rol number(5));
+insert into roll values(1,103);
+insert into roll values(2,112);
+declare
+    v_name varchar2(30);
+    v_roll number(5);
+    cursor cur_stu is select name,rol from student,roll where ser=seri;
+begin
+    open cur_stu;
+    loop
+        fetch cur_stu into v_name,v_roll;
+        dbms_output.put_line(v_name ||' has the roll number '||v_roll);
+        exit when cur_stu%notfound;
+    end loop;
+    close cur_stu;
+end;
