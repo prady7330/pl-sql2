@@ -1,0 +1,6 @@
+create table schema_audit(ddl_date date,ddl_user varchar2(30),object_created varchar2(30),object_name varchar2(30),ddl_operation varchar2(30));
+create or replace trigger sh_trig
+after ddl on schema
+begin
+    insert into schema_audit values (sysdate,sys_context('USERENV','CURRENT_USER'),ora_dict_obj_type,ora_dict_obj_name,ora_sysevent);
+end;
