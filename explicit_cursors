@@ -1,0 +1,18 @@
+create table student(name varchar2(30),roll number(5));
+insert into student values ('pradeep',103);
+insert into student values ('subhash',112);
+insert into student values ('abhishek',077);
+insert into student values ('jainender',14);
+insert into student values ('vivek',15);
+declare 
+    v_name varchar2(30);
+    cursor cur_pk is select name from student;
+begin
+    open cur_pk;
+    loop
+        fetch cur_pk into v_name;
+        dbms_output.put_line(v_name);
+        exit when cur_pk%notfound;
+    end loop;
+    close cur_pk;
+end;
