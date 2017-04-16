@@ -1,0 +1,12 @@
+create table s_name (name varchar2(30));
+create table s_roll (roll number(5));
+create view student as select name,roll from s_name,s_roll;
+create or replace trigger tr
+instead of update on student
+for each row
+enable
+begin
+    update s_name set name=:new.name where name=:old.name;
+    update s_roll set roll=:new.roll where roll=:old.roll;
+end;
+/
