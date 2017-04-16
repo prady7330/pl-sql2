@@ -1,0 +1,13 @@
+create table user_event_audit(event_type varchar2(30),logon_date date,logon_time varchar2(30),logof_date date,logof_time varchar2(30));
+create or replace trigger event_trig
+after logon on schema
+begin
+    insert into user_event_audit values (
+        ora_sysevent,
+        sysdate,
+        to_char(sysdate,'hh24:mi:ss'),
+        null,
+        null,
+        );
+    commit;
+end;
