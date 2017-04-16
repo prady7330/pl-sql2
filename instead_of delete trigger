@@ -1,0 +1,15 @@
+create table stu_name (name varchar2(30));
+create table stu_roll (roll number(5));
+insert into stu_name values ('pradeep');
+insert into stu_roll values (103);
+create view new_student as select name,roll from stu_name,stu_roll;
+select* from new_student;
+create or replace trigger tr_stu
+instead of delete on new_student
+for each row
+enable
+begin
+    delete from stu_name where name=:old.name;
+    delete from stu_roll where roll=:old.roll;
+end;
+delete from new_student where name='pradeep'
