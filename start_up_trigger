@@ -1,0 +1,10 @@
+create table start_up_table(event_type varchar2(30), e_date date,e_time varchar2(30));
+create or replace trigger start_tr
+after startup on database
+begin
+    insert into start_up_table values(
+        ora_sysevent,
+        sysdate,
+        to_char(sysdate,'hh24:mm:ss')
+    );
+end;
