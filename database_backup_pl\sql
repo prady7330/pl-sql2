@@ -1,0 +1,15 @@
+create table superheroes(name varchar2(30));
+create table sh_backup as select * from superheroes where 1=2;
+create or replace trigger s_trigger
+before insert or delete or update on superheroes
+for each row
+enable
+begin
+    if inserting then
+        insert into sh_backup values (:new.name);
+    elsif deleting then
+        delete from sh_backup where name=:old.name;
+    elsif updating then
+        update sh_backup set name=:new.name where name=:old.name;
+    end if;
+end;
