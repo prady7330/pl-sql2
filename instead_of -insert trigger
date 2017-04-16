@@ -1,0 +1,13 @@
+create table s_name (name varchar2(30));
+create table s_roll(roll number(5));
+insert into s_name values ('pradeep');
+insert into s_roll values(103);
+create view student as select name,roll from s_name,s_roll;
+create or replace trigger tr
+instead of insert on student
+for each row
+enable
+begin
+    insert into s_name values (:new.name);
+    insert into s_roll values (:new.roll);
+end;
