@@ -1,0 +1,12 @@
+create table student (ser number,name varchar2(20));
+insert into student values (1,'pradeep');
+insert into student values (2,'subhash');
+declare
+    cursor cur_pk is select ser,name from student where ser=1;
+    v_rec cur_pk%rowtype;
+begin
+    open cur_pk;
+    fetch cur_pk into v_rec;
+    dbms_output.put_line(v_rec.ser||'.'||v_rec.name);
+    close cur_pk;
+end;
