@@ -1,0 +1,9 @@
+create table student (ser number,name varchar(20));
+insert into student values (1,'pradeep');
+insert into student values (2,'subhash');
+declare
+    v_rec student%rowtype;
+begin
+    select* into v_rec from student where ser=1;
+    dbms_output.put_line(v_rec.ser||' index has the guy named as '|| v_rec.name);
+end;
