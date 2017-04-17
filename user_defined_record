@@ -1,0 +1,13 @@
+create table student (ser number,name varchar2(20));
+insert into student values (1,'pradeep');
+insert into student values (2,'subhash');
+declare
+    type v_r is record(
+        v_name student.name%type,
+        v_ser student.ser%type
+        );
+    v_rec v_r;
+begin
+    select name,ser into v_rec.v_name,v_rec.v_ser from student where ser=1;
+    dbms_output.put_line(v_rec.v_ser||' index has the name '||v_rec.v_name);
+end;
