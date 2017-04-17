@@ -1,0 +1,14 @@
+create table student (ser number,name varchar(20));
+create table roll (seri number, rol number(5));
+insert into student values (1,'pradeep');
+insert into student values (2,'subhash');
+insert into roll values (1,103);
+insert into roll values (2,112);
+declare
+    cursor cr_pk is select name,rol from student,roll where ser=seri;
+begin
+    for idx in cr_pk
+    loop
+        dbms_output.put_line(idx.name||' has roll number '||idx.rol);
+    end loop;
+end;
