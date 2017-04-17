@@ -1,0 +1,9 @@
+create table student (ser number, name varchar2(30));
+insert into student values (1,'pradeep');
+insert into student values (2,'subhash');
+declare
+    v_name student%rowtype;
+begin
+    select name into v_name.name from student where ser=1;
+    dbms_output.put_line(v_name.name);
+end;
