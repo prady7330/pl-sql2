@@ -1,0 +1,26 @@
+create or replace function prime(num number)
+return number is
+
+v_flag number := 1;
+begin
+    for idx in 2.. num-1
+    loop
+        if mod(num,idx)=0 then
+            v_flag:=0;
+            exit;
+        end if;
+    end loop;
+    return v_flag;
+end;
+/*
+  declare 
+    v_num number;
+begin
+    v_num:=prime(1);
+    if v_num = 1 then
+        dbms_output.put_line('prime');
+    else
+        dbms_output.put_line('not a prime');
+    end if;
+end;
+*/
