@@ -1,0 +1,10 @@
+create or replace procedure pr_pk is
+    v_fname varchar2(30) := 'pradeep';
+    v_sname varchar2(30) := 'kumar';
+begin
+    dbms_output.put_line('hi i am '||v_fname||' '||v_sname||' from my mothers womb');
+end pr_pk;
+/*execute pr_pk;*/
+begin
+    pr_pk;
+end;
