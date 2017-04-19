@@ -1,0 +1,14 @@
+declare
+    var1 number := 24;
+    var2 number :=0;
+    var3 number ;
+    ex exception;
+begin
+    if var2=0 then
+        raise ex;
+    end if;
+    var3 := var1/var2;
+    dbms_output.put_line(var3);
+    exception when ex then
+        dbms_output.put_line('error!divisor is zero');
+end;
