@@ -1,0 +1,11 @@
+accept var_age number prompt 'enter your age';
+declare
+    age number := &var_age;
+begin
+    if age<18 then
+        raise_application_error(0,'you should be 18+ to drink');
+    end if;
+    dbms_output.put_line('sure! what would you like to have?');
+    exception when others then
+        dbms_output.put_line(sqlerrm);
+end;
